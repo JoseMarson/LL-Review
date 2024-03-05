@@ -7,6 +7,10 @@ abstract class AppTextStyles {
   TextStyle get reviewText;
   TextStyle get reviewText2;
   TextStyle get reviewText2Name;
+  TextStyle get reviewTextExperience;
+  TextStyle get reviewTextExperience2;
+  TextStyle get selectedOptionsEnable;
+  TextStyle get selectedOptionsDisable;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -18,7 +22,7 @@ class AppTextStylesDefault implements AppTextStyles {
       );
   @override
   TextStyle get reviewText => GoogleFonts.inter(
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: FontWeight.w700,
         color: AppTheme.colors.reviewText,
       );
@@ -32,5 +36,26 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 13,
         fontWeight: FontWeight.w700,
         color: AppTheme.colors.reviewText,
+      );
+  @override
+  TextStyle get reviewTextExperience => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.reviewText,
+      );
+  @override
+  TextStyle get reviewTextExperience2 => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.reviewTextExperience2,
+      );
+  @override
+  TextStyle get selectedOptionsDisable => GoogleFonts.inter(
+        fontSize: 10,
+        color: AppTheme.colors.selectedOptionsDisable,
+      );
+  TextStyle get selectedOptionsEnable => GoogleFonts.inter(
+        fontSize: 10,
+        color: AppTheme.colors.selectedOptionsEnable,
       );
 }

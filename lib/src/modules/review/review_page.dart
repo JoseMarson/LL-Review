@@ -19,6 +19,18 @@ class _ReviewPageState extends State<ReviewPage> {
         ? Scaffold(
             appBar: AppBar(
               title: Center(child: Text('Avaliação')),
+              automaticallyImplyLeading: false,
+              actions: [
+                GestureDetector(
+                  onTap: () {
+                    closeModal();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(Icons.close),
+                  ),
+                ),
+              ],
             ),
             body: _buildContent(),
           )
@@ -33,11 +45,17 @@ class _ReviewPageState extends State<ReviewPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (ScreenUtil().screenWidth < 600)
+              Divider(
+                height: 20,
+                color: Colors.grey[300],
+                thickness: 2,
+              ),
             Text(
               'Avalie sua experiência',
               style: AppTheme.textStyles.reviewText,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: 10),
             RichText(
               text: TextSpan(
                 children: [
@@ -56,9 +74,9 @@ class _ReviewPageState extends State<ReviewPage> {
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 12),
             _buildRatingStars(),
-            SizedBox(height: 16),
+            SizedBox(height: 10),
             _buildRatingOptions(),
             SizedBox(height: 16),
             Container(
@@ -69,7 +87,7 @@ class _ReviewPageState extends State<ReviewPage> {
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color(0XFF0057FF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(3.0),
                   ),
@@ -111,8 +129,6 @@ class _ReviewPageState extends State<ReviewPage> {
                 children: [
                   _buildContent(),
                   SizedBox(height: 16),
-                  // _buildRatingOptions(),
-                  // SizedBox(height: 16),
                 ],
               ),
             ],
@@ -157,11 +173,17 @@ class _ReviewPageState extends State<ReviewPage> {
               "Valor da entrega",
               "Praticidade",
               "Suporte para problemas",
+              "Qualidade dos entregadores",
+              "Outros"
             ]
           : [
               "Formas de pagamento",
+              "Valor da entrega",
               "Atrasos",
               "Falhas/Bugs na plataforma",
+              "Entregadores",
+              "Novas funcionalidades",
+              "Outros"
             ];
 
       return _buildOptions(question, options);
@@ -174,9 +196,15 @@ class _ReviewPageState extends State<ReviewPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Divider(
+          height: 20,
+          color: Colors.grey[300],
+          thickness: 1,
+        ),
+        SizedBox(height: 5),
         Text(
           question,
-          style: AppTheme.textStyles.reviewText,
+          style: AppTheme.textStyles.reviewTextExperience,
         ),
         SizedBox(height: 8),
         Wrap(
@@ -193,18 +221,14 @@ class _ReviewPageState extends State<ReviewPage> {
                 padding: EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   color: _reviewcontroller.selectedOptions.contains(option)
-                      ? Colors.blue
+                      ? Color(0XFF0057FF)
                       : Colors.grey[300],
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Text(
-                  option,
-                  style: TextStyle(
-                    color: _reviewcontroller.selectedOptions.contains(option)
-                        ? Colors.white
-                        : Colors.black,
-                  ),
-                ),
+                child: Text(option,
+                    style: _reviewcontroller.selectedOptions.contains(option)
+                        ? AppTheme.textStyles.selectedOptionsEnable
+                        : AppTheme.textStyles.selectedOptionsDisable),
               ),
             );
           }).toList(),
