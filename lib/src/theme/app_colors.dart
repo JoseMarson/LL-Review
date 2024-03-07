@@ -10,13 +10,13 @@ abstract class AppColors {
 
 class AppColorsDefault implements AppColors {
   @override
-  Color get logoTitle => Color(0xFF000000);
+  Color get logoTitle => const Color(0xFF000000);
   @override
-  Color get reviewText => Color(0xFF000000);
+  Color get reviewText => const Color(0xFF000000);
   @override
-  Color get reviewTextExperience2 => Color(0XFF0057FF);
+  Color get reviewTextExperience2 => const Color(0XFF0057FF);
   @override
-  Color get selectedOptionsDisable => Color(0xFF000000);
+  Color get selectedOptionsDisable => const Color(0xFF000000);
   @override
-  Color get selectedOptionsEnable => Color(0xFFFFFFFF);
+  Color get selectedOptionsEnable => const Color(0xFFFFFFFF);
 }

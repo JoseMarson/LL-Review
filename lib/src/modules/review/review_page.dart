@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:locallog_client_reviw/src/modules/review/review_controller.dart';
-import 'package:locallog_client_reviw/src/theme/app_theme.dart';
+import 'review_controller.dart';
+import '../../theme/app_theme.dart';
 
 class ReviewPage extends StatefulWidget {
+  const ReviewPage({super.key});
+
   @override
   _ReviewPageState createState() => _ReviewPageState();
 }
@@ -18,15 +20,15 @@ class _ReviewPageState extends State<ReviewPage> {
     return isMobile
         ? Scaffold(
             appBar: AppBar(
-              title: Center(child: Text('Avaliação')),
+              title: const Center(child: Text('Avaliação')),
               automaticallyImplyLeading: false,
               actions: [
                 GestureDetector(
                   onTap: () {
                     closeModal();
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Icon(Icons.close),
                   ),
                 ),
@@ -55,7 +57,7 @@ class _ReviewPageState extends State<ReviewPage> {
               'Avalie sua experiência',
               style: AppTheme.textStyles.reviewText,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             RichText(
               text: TextSpan(
                 children: [
@@ -74,12 +76,12 @@ class _ReviewPageState extends State<ReviewPage> {
                 ],
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             _buildRatingStars(),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             _buildRatingOptions(),
-            SizedBox(height: 16),
-            Container(
+            const SizedBox(height: 16),
+            SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
@@ -87,12 +89,12 @@ class _ReviewPageState extends State<ReviewPage> {
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Color(0XFF0057FF),
+                  backgroundColor: const Color(0XFF0057FF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(3.0),
                   ),
                 ),
-                child: Text('Enviar'),
+                child: const Text('Enviar'),
               ),
             ),
           ]),
@@ -101,13 +103,12 @@ class _ReviewPageState extends State<ReviewPage> {
 
   Widget _buildModal(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.all(0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Container(
           width: 400,
           height: 400,
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           color: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -118,7 +119,7 @@ class _ReviewPageState extends State<ReviewPage> {
                 children: [
                   GestureDetector(
                     onTap: closeModal,
-                    child: Icon(
+                    child: const Icon(
                       Icons.close,
                     ),
                   ),
@@ -128,7 +129,7 @@ class _ReviewPageState extends State<ReviewPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildContent(),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                 ],
               ),
             ],
@@ -150,10 +151,12 @@ class _ReviewPageState extends State<ReviewPage> {
             });
           },
           child: Icon(
-            Icons.star,
+            (_reviewcontroller.rating >= index + 1)
+                ? Icons.star
+                : Icons.star_border_outlined,
             color: _reviewcontroller.rating >= index + 1
-                ? Color(0XFF0057FF)
-                : Colors.grey[300],
+                ? const Color(0XFF0057FF)
+                : Colors.black,
             size: 40,
           ),
         );
@@ -189,7 +192,7 @@ class _ReviewPageState extends State<ReviewPage> {
       return _buildOptions(question, options);
     }
 
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   Widget _buildOptions(String question, List<String> options) {
@@ -201,12 +204,12 @@ class _ReviewPageState extends State<ReviewPage> {
           color: Colors.grey[300],
           thickness: 1,
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(
           question,
           style: AppTheme.textStyles.reviewTextExperience,
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Wrap(
           spacing: 8.0,
           runSpacing: 8.0,
@@ -218,10 +221,10 @@ class _ReviewPageState extends State<ReviewPage> {
                 });
               },
               child: Container(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   color: _reviewcontroller.selectedOptions.contains(option)
-                      ? Color(0XFF0057FF)
+                      ? const Color(0XFF0057FF)
                       : Colors.grey[300],
                   borderRadius: BorderRadius.circular(8.0),
                 ),

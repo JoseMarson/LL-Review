@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:locallog_client_reviw/src/theme/app_theme.dart';
+import 'app_theme.dart';
 
 abstract class AppTextStyles {
   TextStyle get logoTitle;

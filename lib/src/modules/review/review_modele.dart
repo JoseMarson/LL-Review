@@ -1,8 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:locallog_client_reviw/src/modules/review/review_page.dart';
+import 'review_page.dart';
 
 class ModalModule extends Module {
+  @override
   void routes(r) {
-    r.child('/review', child: (context) => ReviewPage());
+    r.child('/review', child: (context) => const ReviewPage());
   }
 }
